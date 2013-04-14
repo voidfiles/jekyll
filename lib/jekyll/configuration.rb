@@ -119,7 +119,7 @@ module Jekyll
     # Returns the full configuration, with the defaults overridden by the values in the
     # configuration files
     def read_config_files(files)
-      configuration = {}
+      configuration = dup
 
       begin
         files.each do |config_file|
@@ -134,7 +134,6 @@ module Jekyll
         $stderr.puts "#{err}"
       end
 
-      configuration = dup.deep_merge(configuration)
       configuration.backwards_compatibilize
     end
 
